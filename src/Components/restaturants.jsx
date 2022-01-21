@@ -4,7 +4,8 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 //redux action
-import { getRestaurant } from './redux/reducers/restaurants/restaurant.action';
+import { getRestaurant } from '../redux/reducers/restaurants/restaurant.action';
+import RestaurantList from './restaurantList';
 
 
 
@@ -16,7 +17,7 @@ function Restaurants() {
     },[])
   return (
     <div>
-        i am restaurant
+        <RestaurantList/>
     </div>
     );
 }
