@@ -16,7 +16,7 @@ function Restaurants() {
 
     },[])
   return (
-    <div>
+    <div className="py-3 px-md-5 d-flex">
         <RestaurantList/>
     </div>
     );

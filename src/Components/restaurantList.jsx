@@ -19,7 +19,7 @@ const [restaurantList, setRestaurantList] = useState([]);
  },[reduxState.restaurants]);
     
   return (
-      <div>
+      <div className="py-3 px-md-5 d-flex">
       {restaurantList.map((data, index)=>(
           <RestaurantCard {...data} key={index}/>
       ))}
