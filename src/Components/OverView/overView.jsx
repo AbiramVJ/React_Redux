@@ -12,9 +12,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getSpecificRestaurant } from "../../redux/reducers/restaurants/restaurant.action";
 import { getReview } from "../../redux/reducers/review/review.action";
+import ReviewCard from "./reviewCard";
 
 function OverView() {
   const [review, setReview] = useState([]);
+
   const { _id } = useParams();
   // console.log(_id);
 
@@ -36,9 +38,10 @@ function OverView() {
 
   return (
     <div className="p-3">
+    <h1>specific restaurant</h1>
       <MDBCard style={{ width: "18rem", padding: "10px" }}>
         <MDBListGroup flush>
-          <MDBListGroupItem> {reduxState?.name} </MDBListGroupItem>
+          <MDBListGroupItem> {reduxState?.name}</MDBListGroupItem>
           <MDBListGroupItem>{reduxState?.address}</MDBListGroupItem>
           <MDBListGroupItem>{reduxState?.restaurantTimings}</MDBListGroupItem>
         </MDBListGroup>
@@ -46,6 +49,7 @@ function OverView() {
       </MDBCard>
 
       <div>
+      <h1>cuisineName</h1>
         <h4 className="text-lg font-medium my-4">{
           reduxState?.cuisine.map((cuisineName,index)=>(
             <span
@@ -60,19 +64,16 @@ function OverView() {
       </div>
 
       <div>
-        <h4 className="text-lg font-medium">{reduxState?.averageCost}</h4>
-        <h6>for one order (approx.)</h6>
+      <h1>averageCost</h1>
+        <h4 className="text-lg font-medium">for one order (approx.) {reduxState?.averageCost}$</h4>
+        
       </div>
 
       <div>
         <h3 className="text-lg font-semibold">Reviews</h3>
 
-        <small className="text-gray-500">{review.map((data,index)=>(
-          <div key={index}>
-          <p className="w-full text-gray-600 font-light text-base">{data.createdAt}</p>
-          <p className="w-full text-gray-600 font-light text-base">{data.reviewText}</p>
-          </div>
-          
+        <small className="text-gray-500 ">{review.map((data,index)=>(
+          <ReviewCard {...data} key={index}/>      
         ))}</small>
        
       </div>
