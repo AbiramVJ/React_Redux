@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSpecificRestaurant } from "../../redux/reducers/restaurants/restaurant.action";
 import { getReview } from "../../redux/reducers/review/review.action";
 import ReviewCard from "./reviewCard";
+import ReviewPage from "../Review/ReviewPage";
 
 function OverView() {
   const [review, setReview] = useState([]);
@@ -77,6 +78,7 @@ function OverView() {
         ))}</small>
        
       </div>
+      <div className='p-3'> <ReviewPage/></div>
     </div>
   );
 }
