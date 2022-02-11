@@ -5,7 +5,7 @@ import {
   MDBListGroupItem,
   MDBListGroup,
 } from "mdb-react-ui-kit";
-import { useParams } from "react-router-dom";
+import { useParams,Link } from "react-router-dom";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +14,8 @@ import { getSpecificRestaurant } from "../../redux/reducers/restaurants/restaura
 import { getReview } from "../../redux/reducers/review/review.action";
 import ReviewCard from "./reviewCard";
 import ReviewPage from "../Review/ReviewPage";
+import { Button } from "react-bootstrap";
+import Food from "../Food/Food";
 
 function OverView() {
   const [review, setReview] = useState([]);
@@ -24,7 +26,7 @@ function OverView() {
   const reduxState = useSelector(
     (globalState) => globalState.restaurants.selectedRestaurant.restaurant
   );
-  console.log(reduxState);
+ 
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -39,6 +41,8 @@ function OverView() {
 
   return (
     <div className="p-3">
+    <Food/>
+    <Link to={`/${_id}/food`}><Button>FOODS</Button></Link>
     <h1>specific restaurant</h1>
       <MDBCard style={{ width: "18rem", padding: "10px" }}>
         <MDBListGroup flush>

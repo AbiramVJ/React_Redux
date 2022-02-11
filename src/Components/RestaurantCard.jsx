@@ -24,7 +24,7 @@ function RestaurantCard(props) {
   }, [props.photos]);
   return (
     <div>
-    <Link to={`/restaurant/${props._id}/overview`}>
+    <Link to={`/restaurants/${props._id}/overview`}>
       <div className='p-3'>
       <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src={image.images.length && image.images[0].location} />
