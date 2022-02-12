@@ -10,13 +10,42 @@ import {
   MDBModalFooter,
 } from "mdb-react-ui-kit";
 
+// redux
+
+import { useDispatch, useSelector } from "react-redux";
+
+import CheckOutPage from "./CheckOutPage";
+
+
+
 function NavbarCart() {
   const [basicModal, setBasicModal] = useState(false);
+  
 
   const toggleShow = () => setBasicModal(!basicModal);
+
+
+  const reduxState = useSelector((globalState) => globalState.cart.cart);
+  
+
+
+  // const deleteFromCart = (id) => {
+  //   dispatch(deleteCart(id))
+  // }
+  // const incrementFood = () =>{
+  //   dispatch(incerateQuantity(reduxState._id))
+  // }
+  // const decrementFood = () =>{
+  //   if(reduxState.quantity === 1) return;
+
+  //   dispatch(decrementQuantity(reduxState._id));
+  // }
   return (
-    <div>
-      <MDBBtn onClick={toggleShow}>LAUNCH DEMO MODAL</MDBBtn>
+    <div style={{ display: "flex" }}>
+      <MDBBtn onClick={toggleShow}>Cart</MDBBtn>
+      
+      <p>${reduxState.reduce((acc, curVal) => acc + curVal.totalPrice, 0)}</p>
+
       <MDBModal show={basicModal} setShow={setBasicModal} tabIndex="-1">
         <MDBModalDialog>
           <MDBModalContent>
@@ -28,19 +57,12 @@ function NavbarCart() {
                 onClick={toggleShow}
               ></MDBBtn>
             </MDBModalHeader>
-            <MDBModalBody>
-              <div style={{display:"flex", justifyContent:"space-between"}}> 
-                <div>
-                McAloo Tikki™ Burger
-                </div>
-                <div style={{display:"flex"}}>
-                <div style={{padding:"5px", alignItems:"center", fontWeight:"bold"}}>400LKR</div>
-                    <div><button className="btn btn-primary">-</button></div>
-                    <div style={{padding:"5px", alignItems:"center", fontWeight:"bold"}}>count 3</div>
-                    <div><button className="btn btn-primary">+</button></div>
-                </div>
-               </div>
-            </MDBModalBody>
+            {
+              reduxState.map((data,index)=>(
+                <CheckOutPage key={index} {...data}/>
+              ))
+            }
+            
 
             <MDBModalFooter>
               <MDBBtn color="secondary" onClick={toggleShow}>
@@ -54,5 +76,6 @@ function NavbarCart() {
     </div>
   );
 }
+
 
 export default NavbarCart;

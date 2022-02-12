@@ -19,6 +19,7 @@ import { useDispatch} from 'react-redux';
 import { getMySelf } from './redux/reducers/user/user.action';
 import Food from './Components/Food/Food';
 import { getRestaurant } from './redux/reducers/restaurants/restaurant.action';
+import { getCart } from './redux/reducers/cart/cart.action';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
   useEffect(()=>{
     dispatch(getMySelf());
     dispatch(getRestaurant());
+    dispatch(getCart());
   });
  
   

@@ -1,8 +1,10 @@
 import React,{useEffect, useState} from 'react'
 import { Card,Button } from 'react-bootstrap';
 
+//redux
 import { useSelector, useDispatch } from 'react-redux';
 import { getFood } from '../../redux/reducers/food/food.action';
+import { addToCart } from "../../redux/reducers/cart/cart.action";
 
 function FoodItems(props) {
     const [food,setFood] = useState([])
@@ -12,10 +14,16 @@ function FoodItems(props) {
      useEffect(()=>{
          dispatch(getFood(props._id)).then((data)=>{
              setFood(data.payload.foods)
-         });
+         })
      },[])
 
+const addFoodToCart = ()=>{
+  dispatch(addToCart({...food, quantity:1, totalPrice:food.price}));
+  setFood((prev)=>({...prev,isAddedToCart:true}));
 
+}
+const reduxState = useSelector((globalState)=>globalState.cart.cart)
+console.log(reduxState);
 
   return (
       
@@ -28,7 +36,8 @@ function FoodItems(props) {
         <Card.Title> {food.description}</Card.Title> 
       <Card.Text> </Card.Text>
     </Card.Body>
-    <Button>ADD TO CART</Button>
+    <Button onClick={addFoodToCart}>ADD TO CART</Button>
+    
   </Card>
   
     </div>
