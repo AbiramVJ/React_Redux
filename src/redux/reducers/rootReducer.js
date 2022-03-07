@@ -6,6 +6,7 @@ import image from "./images/images.reducer";
 import user from "./user/user.reducer";
 import auth from "./auth/auth.reducer";
 import food from "./food/food.reducer";
+
 import cart from "./cart/cart.reducer";
 
 
